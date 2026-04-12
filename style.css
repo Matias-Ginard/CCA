@@ -1,0 +1,7 @@
+.risk-ok { background: #dcfce7; color: #065f46; }
+.risk-caution { background: #fef9c3; color: #854d0e; }
+.risk-bad { background: #fee2e2; color: #991b1b; }
+.risk-unknown { background: #e5e7eb; color: #374151; }
+.badge { padding: .25rem .5rem; border-radius: .5rem; font-weight: 600; display:inline-block; }
+.sticky-th { position: sticky; top: 0; background: white; z-index: 1; }
+.imagen-ajustada { max-width: 150px; height: auto; border-radius: 8px; }
