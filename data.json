@@ -1,0 +1,54 @@
+{
+  "Herbicidas": {
+    "productos": ["Glifosato", "Cletodim", "Glufosinato", "Triclopyr"],
+    "compat": {
+      "cletodim|glifosato": { "riesgo": "Alto", "limpieza": "Alta", "notas": "Incompatible NIVEL DE LIMPIEZA 9" },
+      "glifosato|glufosinato": { "riesgo": "Medio", "limpieza": "Media", "notas": "Usar con precaución" },
+      "cletodim|glufosinato": { "riesgo": "Bajo", "limpieza": "Baja", "notas": "Compatible" },
+      "glifosato|triclopyr": { "riesgo": "Alto", "limpieza": "Alta", "notas": "Incompatible" }
+    }
+  },
+  "Fertilizantes": {
+    "productos": ["Urea", "Fosfato", "Nitrato de Amonio", "Siembra directa"],
+    "compat": {
+      "fosfato|urea": { "riesgo": "Bajo", "limpieza": "Baja", "notas": "Compatible" },
+      "nitrato de amonio|urea": { "riesgo": "Medio", "limpieza": "Media", "notas": "Precaución" },
+      "fosfato|nitrato de amonio": { "riesgo": "Alto", "limpieza": "Alta", "notas": "Incompatible" },
+      "fosfato|siembra directa": { "riesgo": "Alto", "limpieza": "Alta", "notas": "Incompatible" }
+    }
+  },
+  "FLOW (Mezclas Complejas)": {
+    "productos": [
+      "Paraquat 27,6% + Diuron 10% SC (Herbicidas)",
+      "Atrazina 25% + Simazina 25% SC (Herbicidas)",
+      "Atrazina 50% SC (Herbicidas)",
+      "Imidacloprid 60% FS",
+      "Azoxystrobin 25% SC",
+      "Mancozeb 60% SC",
+      "Triclopyr 48 % + Diclosulan 2,5 % OD (Herbicidas) *",
+      "Boro 10 % SC (Fertilizantes)"
+    ],
+    "compat": {
+      "atrazina 25% + simazina 25% sc (herbicidas)|paraquat 27,6% + diuron 10% sc (herbicidas)": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "atrazina 50% sc (herbicidas)|paraquat 27,6% + diuron 10% sc (herbicidas)": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "atrazina 25% + simazina 25% sc (herbicidas)|atrazina 50% sc (herbicidas)": {
+        "riesgo": "Bajo",
+        "limpieza": "1",
+        "notas": "Compatible"
+      },
+      "paraquat 27,6% + diuron 10% sc (herbicidas)|triclopyr 48 % + diclosulan 2,5 % od (herbicidas) *": {
+        "riesgo": "Medio",
+        "limpieza": "6",
+        "notas": "Riesgo medio: menor a 500 ppm"
+      }
+    }
+  }
+}
