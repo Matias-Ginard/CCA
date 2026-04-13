@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Consulta Agro – Paraguay</title>
+    <title>Panel de Compatibilidad - Agro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .risk-alto { background: #fee2e2; color: #991b1b; }
@@ -11,44 +11,45 @@
         .risk-bajo { background: #dcfce7; color: #065f46; }
         .risk-none { background: #f9fafb; color: #d1d5db; }
         .badge { padding: 4px 8px; border-radius: 6px; font-weight: 700; font-size: 11px; }
-        .sticky-col { position: sticky; left: 0; background: white; z-index: 20; border-right: 2px solid #e5e7eb; min-width: 180px; }
+        
+        /* Contenedor con scroll para que nada quede fuera */
+        .master-wrapper { overflow-x: auto; max-width: 100%; border: 1px solid #e5e7eb; border-radius: 12px; }
+        
+        /* Fijar la primera columna y la primera fila */
+        th.sticky-col, td.sticky-col { position: sticky; left: 0; background: white; z-index: 20; border-right: 2px solid #e5e7eb; }
         thead th { position: sticky; top: 0; z-index: 30; background: #f3f4f6; }
+        th.sticky-col { z-index: 40; }
     </style>
 </head>
-<body class="bg-slate-100 p-4">
+<body class="bg-gray-50 p-4 md:p-8">
     <div class="max-w-7xl mx-auto">
-        <div class="bg-white p-6 rounded-2xl shadow-lg mb-6">
-            <h1 class="text-2xl font-black text-slate-800 mb-2">BUSCADOR DE MEZCLAS</h1>
-            <div id="status" class="text-xs font-bold text-blue-500 mb-6 uppercase tracking-widest">Conectando base de datos...</div>
+        <header class="mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">Matriz Técnica de Compatibilidad</h1>
+            <p id="status" class="text-sm text-blue-500">Cargando base de datos...</p>
+        </header>
 
-            <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 mb-1">CATEGORÍA</label>
-                    <select id="categoria" class="w-full p-3 border-2 rounded-xl bg-slate-50 outline-none focus:border-blue-500"></select>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 mb-1">FILTRAR PRODUCTOS</label>
-                    <input type="text" id="filterTable" placeholder="Escribe para buscar en la tabla..." class="w-full p-3 border-2 rounded-xl outline-none focus:border-blue-500">
-                </div>
+        <div class="flex flex-wrap gap-4 mb-6 bg-white p-4 rounded-xl shadow-sm border">
+            <div>
+                <label class="block text-xs font-bold text-gray-500 mb-1">CATEGORÍA</label>
+                <select id="categoria" class="p-2 border rounded-lg bg-gray-50 outline-none focus:ring-2 focus:ring-green-500"></select>
+            </div>
+            <div class="flex-1">
+                <label class="block text-xs font-bold text-gray-500 mb-1">FILTRAR PRODUCTO EN TABLA</label>
+                <input type="text" id="filterTable" placeholder="Escribe para filtrar la tabla abajo..." class="w-full p-2 border rounded-lg outline-none focus:ring-2 focus:ring-green-500">
             </div>
         </div>
 
-        <div id="resBox" class="mb-6 p-6 bg-white border-l-8 border-blue-500 rounded-xl shadow-md hidden">
-            <div class="flex justify-between items-start">
-                <div>
-                    <h3 class="text-xs font-bold text-slate-400 uppercase">Resultado del análisis</h3>
-                    <div id="vRiesgo" class="badge text-lg mt-1 inline-block"></div>
-                </div>
-                <div class="text-right">
-                    <span class="text-xs font-bold text-slate-400 uppercase">Limpieza</span>
-                    <p id="vLimpieza" class="text-xl font-black text-slate-800"></p>
-                </div>
+        <div id="resBox" class="mb-8 p-6 bg-white border-2 border-green-100 rounded-2xl shadow-sm hidden">
+            <h2 class="font-bold text-gray-400 text-xs uppercase mb-2">Resultado de Evaluación</h2>
+            <div class="flex items-center gap-4 mb-4">
+                <div id="vRiesgo" class="badge text-lg px-4 py-2 uppercase tracking-widest"></div>
+                <div class="text-sm text-gray-600">Limpieza: <b id="vLimpieza" class="text-gray-900"></b></div>
             </div>
-            <p id="vNotas" class="mt-4 text-slate-600 italic bg-slate-50 p-3 rounded-lg border"></p>
+            <p id="vNotas" class="text-gray-700 italic border-l-4 border-green-200 pl-4"></p>
         </div>
 
-        <div class="overflow-auto max-h-[70vh] bg-white rounded-2xl shadow-inner border">
-            <table class="w-full text-left text-[10px]">
+        <div class="master-wrapper bg-white shadow-xl">
+            <table id="mainTable" class="w-full text-left text-[11px] border-collapse">
                 <thead><tr id="hRow"></tr></thead>
                 <tbody id="bBody"></tbody>
             </table>
@@ -59,11 +60,9 @@
         let DBs = {};
         let catActual = "";
 
-        // NORMALIZACIÓN AGRESIVA: Quita todo lo que no sea letras o números para comparar
-        const clean = s => s ? s.toString().toLowerCase().replace(/[^a-z0-9]/g, '') : '';
-        
+        const norm = s => (s || "").toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
         const pairKey = (a, b) => { 
-            const A = clean(a), B = clean(b); 
+            const A = norm(a), B = norm(b); 
             return A < B ? `${A}|${B}` : `${B}|${A}`; 
         };
 
@@ -71,7 +70,7 @@
             try {
                 const r = await fetch('data.json');
                 DBs = await r.json();
-                document.getElementById('status').textContent = "✅ SISTEMA ACTIVO";
+                document.getElementById('status').textContent = "✅ " + Object.keys(DBs).length + " Categorías listas";
                 
                 const sel = document.getElementById('categoria');
                 Object.keys(DBs).forEach((c, i) => {
@@ -80,62 +79,52 @@
                     o.value = c; o.textContent = c;
                     sel.appendChild(o);
                 });
+
                 draw();
-            } catch(e) { document.getElementById('status').textContent = "❌ ERROR: NO SE ENCONTRÓ DATA.JSON"; }
+            } catch(e) { document.getElementById('status').textContent = "❌ Error cargando JSON"; }
+        }
+
+        function getColor(riesgo) {
+            const r = norm(riesgo);
+            if(r.includes('alto') || r.includes('incomp')) return 'risk-alto';
+            if(r.includes('med') || r.includes('precau')) return 'risk-medio';
+            if(r.includes('bajo') || r.includes('comp')) return 'risk-bajo';
+            return 'risk-none';
         }
 
         function draw() {
-            const busqueda = clean(document.getElementById('filterTable').value);
+            const filter = norm(document.getElementById('filterTable').value);
             const data = DBs[catActual];
             const h = document.getElementById('hRow');
             const b = document.getElementById('bBody');
 
-            // Filtramos la lista de productos
-            const prods = data.productos.filter(p => clean(p).includes(busqueda));
+            // Filtrar productos si hay búsqueda
+            const prodsFiltrados = data.productos.filter(p => norm(p).includes(filter));
 
-            // Header
-            h.innerHTML = '<th class="sticky-col p-4 bg-slate-100 text-slate-500 font-bold uppercase border-b">Producto</th>';
-            prods.forEach(p => {
-                h.innerHTML += `<th class="p-3 border-b bg-slate-50 text-center min-w-[140px] font-bold text-slate-400 border-l">${p}</th>`;
+            // Dibujar Header
+            h.innerHTML = '<th class="sticky-col p-3 bg-gray-100 border-b">Producto</th>';
+            prodsFiltrados.forEach(p => {
+                h.innerHTML += `<th class="p-2 border-b bg-gray-50 text-center min-w-[120px] whitespace-normal leading-tight border-l">${p}</th>`;
             });
 
-            // Filas
+            // Dibujar Filas
             b.innerHTML = "";
-            prods.forEach(rowP => {
+            prodsFiltrados.forEach(rowP => {
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-50 border-b transition";
-                tr.innerHTML = `<td class="sticky-col p-4 font-bold text-slate-700 bg-white border-r shadow-sm">${rowP}</td>`;
+                tr.className = "hover:bg-blue-50 transition border-b";
+                tr.innerHTML = `<td class="sticky-col p-3 font-bold bg-white text-gray-800 border-r shadow-sm">${rowP}</td>`;
                 
-                prods.forEach(colP => {
+                prodsFiltrados.forEach(colP => {
                     const td = document.createElement('td');
                     td.className = "p-2 text-center border-l";
                     if(rowP === colP) {
-                        td.innerHTML = '<span class="text-slate-200">●</span>';
+                        td.innerHTML = '<span class="text-gray-200">—</span>';
                     } else {
-                        // AQUÍ ESTÁ EL TRUCO: Usamos clean() para generar la llave
-                        const llave = pairKey(rowP, colP);
-                        
-                        // Buscamos en el JSON usando la llave limpia
-                        // IMPORTANTE: En tu data.json las llaves de 'compat' deben estar limpias (sin espacios/paréntesis)
-                        let info = data.compat[llave];
-                        
+                        const info = data.compat[pairKey(rowP, colP)];
                         const r = info ? info.riesgo : "";
-                        const rNorm = clean(r);
-                        let c = 'risk-none';
-                        if(rNorm.includes('alto') || rNorm === '5') c = 'risk-alto';
-                        else if(rNorm.includes('med') || rNorm === '6') c = 'risk-medio';
-                        else if(rNorm.includes('bajo') || rNorm === '1') c = 'risk-bajo';
-
-                        td.innerHTML = `<div class="w-8 h-8 mx-auto rounded-lg ${c} flex items-center justify-center cursor-pointer shadow-sm active:scale-90 transition" title="${r || 'Sin datos'}"></div>`;
-                        td.onclick = () => {
-                            const box = document.getElementById('resBox');
-                            box.classList.remove('hidden');
-                            document.getElementById('vRiesgo').textContent = r || "SIN REGISTRO";
-                            document.getElementById('vRiesgo').className = "badge " + c;
-                            document.getElementById('vLimpieza').textContent = info ? (info.limpieza || "-") : "-";
-                            document.getElementById('vNotas').textContent = info ? (info.notas || "Mezcla permitida.") : `No hay información técnica cargada para esta mezcla específica.`;
-                            box.scrollIntoView({behavior: 'smooth', block: 'center'});
-                        };
+                        const c = getColor(r);
+                        td.innerHTML = `<div class="w-6 h-6 mx-auto rounded-md ${c} flex items-center justify-center cursor-pointer shadow-sm hover:scale-110 transition" title="${r}"></div>`;
+                        td.onclick = () => show(rowP, colP, info);
                     }
                     tr.appendChild(td);
                 });
@@ -143,8 +132,20 @@
             });
         }
 
+        function show(a, b, info) {
+            const box = document.getElementById('resBox');
+            box.classList.remove('hidden');
+            const r = info ? info.riesgo : "Sin registro";
+            document.getElementById('vRiesgo').textContent = r;
+            document.getElementById('vRiesgo').className = "badge " + getColor(r);
+            document.getElementById('vLimpieza').textContent = info ? (info.limpieza || "N/A") : "Desconocida";
+            document.getElementById('vNotas').textContent = info ? (info.notas || "Sin notas técnicas.") : `No hay datos para la mezcla entre ${a} y ${b}.`;
+            box.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
+
         document.getElementById('categoria').onchange = (e) => { catActual = e.target.value; draw(); };
         document.getElementById('filterTable').oninput = draw;
+
         start();
     </script>
 </body>
