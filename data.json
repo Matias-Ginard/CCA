@@ -1,53 +1,1339 @@
 {
-  "Herbicidas": {
-    "productos": ["Glifosato", "Cletodim", "Glufosinato", "Triclopyr"],
-    "compat": {
-      "cletodim|glifosato": { "riesgo": "Alto", "limpieza": "Alta", "notas": "Incompatible NIVEL DE LIMPIEZA 9" },
-      "glifosato|glufosinato": { "riesgo": "Medio", "limpieza": "Media", "notas": "Usar con precaución" },
-      "cletodim|glufosinato": { "riesgo": "Bajo", "limpieza": "Baja", "notas": "Compatible" },
-      "glifosato|triclopyr": { "riesgo": "Alto", "limpieza": "Alta", "notas": "Incompatible" }
+{
+  "Herbicidas": [
+    {
+      "Producto A": "Glifosato",
+      "Producto B": "Cletodim",
+      "Riesgo": "Alto",
+      "Limpieza": "Alta",
+      "Notas": "Incompatible NIVEL DE LIMPIEZA 9"
+    },
+    {
+      "Producto A": "Glifosato",
+      "Producto B": "Glufosinato",
+      "Riesgo": "Medio",
+      "Limpieza": "Media",
+      "Notas": "Usar con precaución"
+    },
+    {
+      "Producto A": "Cletodim",
+      "Producto B": "Glufosinato",
+      "Riesgo": "Bajo",
+      "Limpieza": "Baja",
+      "Notas": "Compatible"
+    },
+    {
+      "Producto A": "Triclopyr",
+      "Producto B": "Glifosato",
+      "Riesgo": "Alto",
+      "Limpieza": "Alta",
+      "Notas": "Incompatible"
     }
-  },
-  "Fertilizantes": {
-    "productos": ["Urea", "Fosfato", "Nitrato de Amonio", "Siembra directa"],
-    "compat": {
-      "fosfato|urea": { "riesgo": "Bajo", "limpieza": "Baja", "notas": "Compatible" },
-      "nitrato de amonio|urea": { "riesgo": "Medio", "limpieza": "Media", "notas": "Precaución" },
-      "fosfato|nitrato de amonio": { "riesgo": "Alto", "limpieza": "Alta", "notas": "Incompatible" },
-      "fosfato|siembra directa": { "riesgo": "Alto", "limpieza": "Alta", "notas": "Incompatible" }
+  ],
+  "Fertilizantes": [
+    {
+      "Producto A": "Urea",
+      "Producto B": "Fosfato",
+      "Riesgo": "Bajo",
+      "Limpieza": "Baja",
+      "Notas": "Compatible"
+    },
+    {
+      "Producto A": "Nitrato de Amonio",
+      "Producto B": "Urea",
+      "Riesgo": "Medio",
+      "Limpieza": "Media",
+      "Notas": "Precaución"
+    },
+    {
+      "Producto A": "Fosfato",
+      "Producto B": "Nitrato de Amonio",
+      "Riesgo": "Alto",
+      "Limpieza": "Alta",
+      "Notas": "Incompatible"
+    },
+    {
+      "Producto A": "Siembra directa",
+      "Producto B": "Fosfato",
+      "Riesgo": "Alto",
+      "Limpieza": "Alta",
+      "Notas": "Incompatible"
     }
-  },
-  "FLOW (Mezclas Complejas)": {
-    "productos": [
-      "Paraquat 27,6% + Diuron 10% SC (Herbicidas)",
-      "Atrazina 25% + Simazina 25% SC (Herbicidas)",
-      "Atrazina 50% SC (Herbicidas)",
-      "Imidacloprid 60% FS",
-      "Azoxystrobin 25% SC",
-      "Mancozeb 60% SC",
-      "Triclopyr 48 % + Diclosulan 2,5 % OD (Herbicidas) *",
-      "Boro 10 % SC (Fertilizantes)"
-    ],
-    "compat": {
-      "atrazina 25% + simazina 25% sc (herbicidas)|paraquat 27,6% + diuron 10% sc (herbicidas)": {
-        "riesgo": "Alto",
-        "limpieza": "5",
-        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
-      },
-      "atrazina 50% sc (herbicidas)|paraquat 27,6% + diuron 10% sc (herbicidas)": {
-        "riesgo": "Alto",
-        "limpieza": "5",
-        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
-      },
-      "atrazina 25% + simazina 25% sc (herbicidas)|atrazina 50% sc (herbicidas)": {
-        "riesgo": "Bajo",
-        "limpieza": "1",
-        "notas": "Compatible"
-      },
-      "paraquat 27,6% + diuron 10% sc (herbicidas)|triclopyr 48 % + diclosulan 2,5 % od (herbicidas) *": {
-        "riesgo": "Medio",
-        "limpieza": "6",
-        "notas": "Riesgo medio: menor a 500 ppm"
+  ],
+  "FLOW": [
+    {
+      "Producto A": "Paraquat 27,6% + Diuron 10%  SC (Herbicidas)",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Bajo",
+      "Limpieza": 1
+    },
+    {
+      "Producto A": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Atrazina 50% SC (Herbicidas)",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Imidacloprid 60% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Imidacloprid 60% Foliar SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Imidacloprid 21% + Thiodicarb 28% Foliar SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Imidacloprid 21% + Thiodicarb 28% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Imidacloprid 10,5% + Thiodicarb 28% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Tebuconazole 6% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Carbendazin 50% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Carbendazin 38% + Tebuconazole 10% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Carboxin 20% + Thiran 20% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Carbendazin 15% + Thiran 35% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Flutriafol 25% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Azoxystrobin 25% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Azoxystrobin 20% + Flutriafol 25% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Fipronil 25 % FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Azoxystrobin 20% + Tebuconazole 20% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Azoxystrobin 20% + Ciproconazole 8% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Azoxystrobin 20% + Ciproconazole 12% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Azoxystrobin 25% + Ciproconazole 16% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Azoxistrobin 12,5 %+ Propiconazole 25% SE",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 6,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Thiametoxan 35% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Fludioxonil 2,5% + Metalaxil 3,75% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Thiametoxan 60% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Thiametoxan 30% + Bifentrin 20% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Fipro 25% +FludioxonilL 1,25% + Metalaxyl 1,875% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Fipro 25% +Fludio 1,25% + Metalaxil 1,875%+Azoxys 2,5% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Emamectina 5% + Lufenuron 20% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Teflubenzuron 20 + Emamectina 5% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Teflubenzuron 30% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Azoxys12% + Cipro7,2% +Prothioconazole 10% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Azoxystrobin 15% + Prothioconazole 17,5% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Imidacloprid 40% + Bifentrin 15% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Thiametoxan 14,1% + Lambdacialotrina 10,6% ZC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Fipro 25% + Piraclostrobin  3,12% + Fludio 2,5% + Metalaxyl 3,75% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Picoxystrobin 20% + Ciproconazole 16% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Diafenthiuron 50 % SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Imidacloprid 30 % + Alfacipermetrina 15 % SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Thiametoxam 60 % FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 60 % SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 50 % + Prothio  2,5 % + Azoxystrobin 2 % SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 50 % + Prothio  2,5 % + Trifloxystrobin 2 % SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 40 % + Prothio  3,2 % + Trifloxystrobin 2,4 % ",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 50 % + Prothio  2,5 % + Pyraclostrobin 2 % SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 50 % + Prothio  2,5 % + Picoxystrobin 2 % SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 40 % + Prothio  3,2 % + Picoxystrobin 2,4 % ",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Clorotalonyl 72% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Boro 10 % SC  (Fertilizantes)",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Triclopyr 48 % + Diclosulan 2,5 %  OD (Herbicidas) * ",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Medio",
+      "Limpieza": 6,
+      "Notas": "Riesgo medio: menor a 500 ppm"
+    },
+    {
+      "Producto A": "Picoxystrobin 15 % + Prothioconazole 17,5% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Trifloxystrobin 15% + Ciproconazole 12,5% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 50% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Tebuconazole 43 % SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Clorfenapyr 24% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Metoxifenocide 48% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Tiofanato Metil 30% + Fludioxonil 5% + Trifloxystrobin 5% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 40% + Tebuconazole 3,5 + Picoxystrobin 2,8% OD ",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 6,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Ethiprole 25% + Bifentrhin 10% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Clorfenapyr 40% + Lufenuron 6,66% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Carbendazin 10% + Prothioconazole 5% + Pyraclostrobin 1,25% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Tebuthiuron 50% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Flumioxazin 50% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Tiofanato Metil 36% + Piraclostrobin 6% + Fludioxonil 5% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Diflubenzuron 48% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 40% + Prothioconazole 2,5% + Benzovindiflupyr 1,36% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 40% + Prothioconazole 2,5% + Benzovindiflupyr 1,36% OD",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 6,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Thiametoxan 25% + Bifentrin 10% OD",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 6,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Sulfentrazone  50% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Abamectina 8,4% SC Syngenta",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 10,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Isocycloseram 10% + Lambdacialotrina  15% ZC Syngenta",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 10,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Adyuvante Herbicidas 2",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 6,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Tebuconazole 20% + Picoxystrobin 12% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Thiametoxan 21% + Fempropatrina 18% OD",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 6,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Imazethapyr 20% + Flumioxazin 12% + Diclosulam 5% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Bajo",
+      "Limpieza": 2,
+      "Notas": "Riesgo bajo: menor a 1000 ppm"
+    },
+    {
+      "Producto A": "Clomazona 50% + Flumioxazin 4% OD",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Bajo",
+      "Limpieza": 6,
+      "Notas": "Riesgo bajo: menor a 1000 ppm"
+    },
+    {
+      "Producto A": "Flumioxazin 24% + Diclosulam 10% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Tebuconazole 20% + Difenoconazole 20% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Clorantraniliprole 62,5% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Clorantraniliprole 25% + Emamectina 12% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Clorotalonyl 40% + Tebuconazole 4% + Picoxystrobin 3% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Lambdacialotrina 25% CS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 44,5% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Clorotalonyl 40% + Tebuconazole 4% + Trifloxystrobin 3% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Clorotalonyl 40% + Tebuconazole 4% + Difeconazole 4% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Glufosinato 40% + Saflufenacil 3% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Bajo",
+      "Limpieza": 2,
+      "Notas": "Riesgo bajo: menor a 1000 ppm"
+    },
+    {
+      "Producto A": "Terbutilazina 40% + Mesotrione 6% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Ethiprole 25% + Lambdacialotrina 10% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Thiametoxam 30% + Clorantraniliprole 24% FS",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Thiametoxam 30% + Clorantraniliprole 24% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 40% + Ptothioconazole 3,2% + Bixafen 2,8% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Clorfenapyr 30% + Clorantraniliprole 8% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Ciantraniliprole 30%  + Thiametoxam 30% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Fluazinam 40% + Tebuconazole 8% + Picoxistrobin 6% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Clotianidin 20% + Fenpropatrina 18% OD",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 6,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 40% + Prothioconazole  3,36% + Fluindapir 3,36% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Clorotalonil 40% + Tebuconazole 4% + Bixafen 3,5 % SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Mancozeb 40% + Prothioconazole  3,36% + Fluindapir 3,36% SC",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Acetamiprid 20% + Piriproxifen 10% OD",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Clotianidin 10% + Fenpropatrina 9% SE",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Prothioconazole 17.5% + Trifloxystrobin 15% SC ",
+      "Producto B": "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5,
+      "Notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+    },
+    {
+      "Producto A": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Medio",
+      "Limpieza": 2
+    },
+    {
+      "Producto A": "Atrazina 50% SC (Herbicidas)",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Bajo",
+      "Limpieza": 1
+    },
+    {
+      "Producto A": "Imidacloprid 60% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Bajo",
+      "Limpieza": 1
+    },
+    {
+      "Producto A": "Imidacloprid 60% Foliar SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Imidacloprid 21% + Thiodicarb 28% Foliar SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Imidacloprid 21% + Thiodicarb 28% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Imidacloprid 10,5% + Thiodicarb 28% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Tebuconazole 6% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Carbendazin 50% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Carbendazin 38% + Tebuconazole 10% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Carboxin 20% + Thiran 20% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Carbendazin 15% + Thiran 35% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Flutriafol 25% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Azoxystrobin 25% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Azoxystrobin 20% + Flutriafol 25% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Fipronil 25 % FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Azoxystrobin 20% + Tebuconazole 20% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Azoxystrobin 20% + Ciproconazole 8% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Azoxystrobin 20% + Ciproconazole 12% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Azoxystrobin 25% + Ciproconazole 16% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Azoxistrobin 12,5 %+ Propiconazole 25% SE",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Thiametoxan 35% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 6
+    },
+    {
+      "Producto A": "Fludioxonil 2,5% + Metalaxil 3,75% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Thiametoxan 60% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Thiametoxan 30% + Bifentrin 20% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Fipro 25% +FludioxonilL 1,25% + Metalaxyl 1,875% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Fipro 25% +Fludio 1,25% + Metalaxil 1,875%+Azoxys 2,5% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Emamectina 5% + Lufenuron 20% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Teflubenzuron 20 + Emamectina 5% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Teflubenzuron 30% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Azoxys12% + Cipro7,2% +Prothioconazole 10% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Azoxystrobin 15% + Prothioconazole 17,5% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Imidacloprid 40% + Bifentrin 15% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Thiametoxan 14,1% + Lambdacialotrina 10,6% ZC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Fipro 25% + Piraclostrobin  3,12% + Fludio 2,5% + Metalaxyl 3,75% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Picoxystrobin 20% + Ciproconazole 16% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Diafenthiuron 50 % SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Imidacloprid 30 % + Alfacipermetrina 15 % SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Thiametoxam 60 % FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 60 % SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 50 % + Prothio  2,5 % + Azoxystrobin 2 % SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "No compatible",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 50 % + Prothio  2,5 % + Trifloxystrobin 2 % SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 40 % + Prothio  3,2 % + Trifloxystrobin 2,4 % ",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 50 % + Prothio  2,5 % + Pyraclostrobin 2 % SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 50 % + Prothio  2,5 % + Picoxystrobin 2 % SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 40 % + Prothio  3,2 % + Picoxystrobin 2,4 % ",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Clorotalonyl 72% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Boro 10 % SC  (Fertilizantes)",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Triclopyr 48 % + Diclosulan 2,5 %  OD (Herbicidas) * ",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Picoxystrobin 15 % + Prothioconazole 17,5% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 6
+    },
+    {
+      "Producto A": "Trifloxystrobin 15% + Ciproconazole 12,5% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 50% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Tebuconazole 43 % SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Clorfenapyr 24% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Metoxifenocide 48% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Tiofanato Metil 30% + Fludioxonil 5% + Trifloxystrobin 5% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 40% + Tebuconazole 3,5 + Picoxystrobin 2,8% OD ",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Ethiprole 25% + Bifentrhin 10% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 6
+    },
+    {
+      "Producto A": "Clorfenapyr 40% + Lufenuron 6,66% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Carbendazin 10% + Prothioconazole 5% + Pyraclostrobin 1,25% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Tebuthiuron 50% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Alto",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Flumioxazin 50% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Riesgo": "Bajo",
+      "Limpieza": 1
+    },
+    {
+      "Producto A": "Tiofanato Metil 36% + Piraclostrobin 6% + Fludioxonil 5% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Diflubenzuron 48% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 40% + Prothioconazole 2,5% + Benzovindiflupyr 1,36% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 40% + Prothioconazole 2,5% + Benzovindiflupyr 1,36% OD",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Thiametoxan 25% + Bifentrin 10% OD",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 6
+    },
+    {
+      "Producto A": "Sulfentrazone  50% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 6
+    },
+    {
+      "Producto A": "Abamectina 8,4% SC Syngenta",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Isocycloseram 10% + Lambdacialotrina  15% ZC Syngenta",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 10
+    },
+    {
+      "Producto A": "Adyuvante Herbicidas 2",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 10
+    },
+    {
+      "Producto A": "Tebuconazole 20% + Picoxystrobin 12% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 6
+    },
+    {
+      "Producto A": "Thiametoxan 21% + Fempropatrina 18% OD",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Imazethapyr 20% + Flumioxazin 12% + Diclosulam 5% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 6
+    },
+    {
+      "Producto A": "Clomazona 50% + Flumioxazin 4% OD",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Flumioxazin 24% + Diclosulam 10% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 6
+    },
+    {
+      "Producto A": "Tebuconazole 20% + Difenoconazole 20% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Clorantraniliprole 62,5% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Clorantraniliprole 25% + Emamectina 12% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Clorotalonyl 40% + Tebuconazole 4% + Picoxystrobin 3% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Lambdacialotrina 25% CS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 44,5% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Clorotalonyl 40% + Tebuconazole 4% + Trifloxystrobin 3% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Clorotalonyl 40% + Tebuconazole 4% + Difeconazole 4% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Glufosinato 40% + Saflufenacil 3% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Terbutilazina 40% + Mesotrione 6% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 2
+    },
+    {
+      "Producto A": "Ethiprole 25% + Lambdacialotrina 10% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 1
+    },
+    {
+      "Producto A": "Thiametoxam 30% + Clorantraniliprole 24% FS",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Thiametoxam 30% + Clorantraniliprole 24% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 40% + Ptothioconazole 3,2% + Bixafen 2,8% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Clorfenapyr 30% + Clorantraniliprole 8% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Ciantraniliprole 30%  + Thiametoxam 30% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Fluazinam 40% + Tebuconazole 8% + Picoxistrobin 6% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Clotianidin 20% + Fenpropatrina 18% OD",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 40% + Prothioconazole  3,36% + Fluindapir 3,36% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 6
+    },
+    {
+      "Producto A": "Clorotalonil 40% + Tebuconazole 4% + Bixafen 3,5 % SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Mancozeb 40% + Prothioconazole  3,36% + Fluindapir 3,36% SC",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Acetamiprid 20% + Piriproxifen 10% OD",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Clotianidin 10% + Fenpropatrina 9% SE",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Producto A": "Prothioconazole 17.5% + Trifloxystrobin 15% SC ",
+      "Producto B": "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
+      "Limpieza": 5
+    },
+    {
+      "Limpieza": 5
+    }
+  ]
+}
       }
     }
   }
