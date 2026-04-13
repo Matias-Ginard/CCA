@@ -3,175 +3,137 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sistema de Compatibilidad - Agroquímicos</title>
+    <title>Consulta Agroquímicos – JSON DB</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .risk-alto { background: #fee2e2; color: #991b1b; border: 1px solid #f87171; }
-        .risk-medio { background: #fef9c3; color: #854d0e; border: 1px solid #facc15; }
-        .risk-bajo { background: #dcfce7; color: #065f46; border: 1px solid #4ade80; }
-        .risk-none { background: #f3f4f6; color: #374151; }
-        .badge { padding: 4px 8px; border-radius: 6px; font-weight: 700; display: inline-block; font-size: 11px; text-transform: uppercase; }
-        .table-container { overflow-x: auto; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
-        .sticky-col { position: sticky; left: 0; background: white; z-index: 5; border-right: 2px solid #e5e7eb; min-width: 150px; }
-        th { white-space: nowrap; }
+        .risk-ok { background: #dcfce7; color: #065f46; }
+        .risk-caution { background: #fef9c3; color: #854d0e; }
+        .risk-bad { background: #fee2e2; color: #991b1b; }
+        .risk-unknown { background: #e5e7eb; color: #374151; }
+        .badge { padding: .25rem .5rem; border-radius: .5rem; font-weight: 600; display:inline-block; font-size: 12px; }
+        .sticky-th { position: sticky; top: 0; background: white; z-index: 10; border-bottom: 2px solid #e5e7eb; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
-    <div class="max-w-6xl mx-auto p-4 md:p-6">
-        <header class="mb-8 text-center md:text-left">
-            <h1 class="text-3xl font-extrabold tracking-tight text-slate-900">Consulta de Mezclas</h1>
-            <p id="status" class="text-sm font-medium text-blue-600 animate-pulse">Cargando base de datos...</p>
+<body class="bg-gray-50 text-gray-800">
+    <div class="max-w-6xl mx-auto p-4 md:p-8">
+        <header class="mb-6">
+            <h1 class="text-2xl md:text-3xl font-bold">Consulta de compatibilidad</h1>
+            <p id="status" class="text-sm text-blue-600">Cargando base de datos...</p>
         </header>
 
-        <div class="mb-6">
-            <label class="block text-sm font-bold text-slate-700 mb-2">Selecciona Categoría:</label>
-            <select id="categoria" class="w-full md:w-64 p-3 bg-white border border-slate-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 outline-none"></select>
-        </div>
+        <section class="flex items-center gap-4 mb-4">
+            <label class="text-sm font-medium">Categoría:</label>
+            <select id="categoria" class="rounded-xl border px-3 py-2 bg-white outline-none focus:ring-2 focus:ring-blue-500"></select>
+        </section>
 
-        <div class="grid lg:grid-cols-3 gap-6 mb-10">
-            <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
-                    🔍 Evaluar Mezcla Específica
-                </h2>
-                <div class="grid md:grid-cols-2 gap-4">
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white rounded-2xl shadow p-6 md:col-span-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="text-xs font-bold text-slate-500 uppercase">Producto A</label>
-                        <input list="productos" id="prodA" class="mt-1 w-full p-3 border rounded-xl bg-slate-50 focus:bg-white transition" placeholder="Buscar producto...">
+                        <label class="block text-xs font-bold uppercase text-gray-500">Producto A</label>
+                        <input list="productos" id="prodA" class="mt-1 w-full rounded-xl border px-3 py-2" placeholder="Escriba producto..." />
                     </div>
                     <div>
-                        <label class="text-xs font-bold text-slate-500 uppercase">Producto B</label>
-                        <input list="productos" id="prodB" class="mt-1 w-full p-3 border rounded-xl bg-slate-50 focus:bg-white transition" placeholder="Buscar producto...">
+                        <label class="block text-xs font-bold uppercase text-gray-500">Producto B</label>
+                        <input list="productos" id="prodB" class="mt-1 w-full rounded-xl border px-3 py-2" placeholder="Escriba producto..." />
                     </div>
                 </div>
                 <datalist id="productos"></datalist>
+                <button id="btnEvaluar" class="mt-4 w-full bg-gray-900 text-white py-2 rounded-xl font-bold hover:bg-black transition">Evaluar Mezcla</button>
                 
-                <button id="btnEvaluar" class="mt-6 w-full bg-slate-900 text-white py-3 rounded-xl font-bold hover:bg-black transition-all transform active:scale-95">
-                    VERIFICAR COMPATIBILIDAD
-                </button>
-
-                <div id="resultado" class="mt-6 p-5 border-2 border-blue-100 rounded-2xl bg-blue-50 hidden">
-                    <div class="flex flex-wrap items-center gap-3 mb-3">
-                        <span class="text-sm font-bold text-slate-600">Nivel de Riesgo:</span>
+                <div id="resultado" class="mt-6 p-4 border-2 border-dashed rounded-xl hidden">
+                    <div class="flex items-center gap-2 mb-2">
                         <span id="resRiesgo" class="badge"></span>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div>
-                            <span class="text-xs font-bold text-slate-500 uppercase block">Limpieza:</span>
-                            <p id="resLimpieza" class="text-sm font-semibold text-slate-800"></p>
-                        </div>
-                        <div class="md:col-span-2">
-                            <span class="text-xs font-bold text-slate-500 uppercase block">Notas técnicas:</span>
-                            <p id="resNotas" class="text-sm text-slate-700 italic mt-1"></p>
-                        </div>
-                    </div>
+                    <p id="resNotas" class="text-sm text-gray-600 italic"></p>
                 </div>
             </div>
 
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 h-fit">
-                <h2 class="font-bold mb-4">Referencia de Colores</h2>
-                <div class="space-y-3">
-                    <div class="flex items-center gap-3"><span class="w-4 h-4 risk-bajo rounded-full"></span> <span class="text-sm font-medium">Bajo / Compatible</span></div>
-                    <div class="flex items-center gap-3"><span class="w-4 h-4 risk-medio rounded-full"></span> <span class="text-sm font-medium">Medio / Precaución</span></div>
-                    <div class="flex items-center gap-3"><span class="w-4 h-4 risk-alto rounded-full"></span> <span class="text-sm font-medium">Alto / Incompatible</span></div>
-                    <div class="flex items-center gap-3"><span class="w-4 h-4 risk-none rounded-full"></span> <span class="text-sm font-medium text-slate-400">Sin registro</span></div>
+            <div class="bg-white rounded-2xl shadow p-6">
+                <h2 class="font-bold mb-3">Referencias</h2>
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2"><div class="w-3 h-3 risk-ok rounded-full"></div> <span class="text-xs">Compatible</span></div>
+                    <div class="flex items-center gap-2"><div class="w-3 h-3 risk-caution rounded-full"></div> <span class="text-xs">Precaución</span></div>
+                    <div class="flex items-center gap-2"><div class="w-3 h-3 risk-bad rounded-full"></div> <span class="text-xs">Incompatible</span></div>
                 </div>
             </div>
         </div>
 
-        <h2 class="text-xl font-bold mb-4">Matriz de Compatibilidad Rápida</h2>
-        <div class="table-container bg-white">
-            <table class="w-full text-left border-collapse">
-                <thead><tr id="headerRow" class="bg-slate-100"></tr></thead>
-                <tbody id="tableBody"></tbody>
-            </table>
+        <div class="bg-white rounded-2xl shadow overflow-hidden">
+            <div class="overflow-auto max-h-[500px]">
+                <table class="min-w-full text-xs">
+                    <thead><tr id="headerRow"></tr></thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
         </div>
-        
-        <footer class="mt-12 py-6 border-t border-slate-200 text-center text-slate-400 text-xs">
-            © 2024 - Sistema de Consulta Técnica Agroquímica
-        </footer>
     </div>
 
     <script>
         let DBs = {};
         let categoriaActual = "";
 
-        // Normalización avanzada para ignorar mayúsculas, espacios extra y acentos
-        const norm = s => (s || "").toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, ' ').trim();
-        const pairKey = (a, b) => { 
-            const A = norm(a), B = norm(b); 
-            return A < B ? `${A}|${B}` : `${B}|${A}`; 
-        };
+        const norm = s => (s || "").toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+        const pairKey = (a,b) => { const A = norm(a), B = norm(b); return A < B ? `${A}|${B}` : `${B}|${A}`; };
 
-        async function init() {
+        async function cargarDatos() {
             try {
-                const res = await fetch('data.json');
-                if (!res.ok) throw new Error("No se encontró data.json");
-                DBs = await res.json();
+                // Buscamos el archivo JSON en el mismo servidor
+                const respuesta = await fetch('data.json');
+                DBs = await respuesta.json();
                 
-                document.getElementById('status').innerHTML = "✅ Base de datos cargada";
-                document.getElementById('status').classList.remove('text-blue-600', 'animate-pulse');
-                document.getElementById('status').classList.add('text-green-600');
-
+                document.getElementById('status').textContent = "✅ Base de datos online";
+                
+                // Llenar selector
                 const select = document.getElementById('categoria');
-                Object.keys(DBs).forEach((cat, i) => {
-                    if(i === 0) categoriaActual = cat;
+                Object.keys(DBs).forEach((cat, index) => {
+                    if(index === 0) categoriaActual = cat;
                     const opt = document.createElement('option');
                     opt.value = cat; opt.textContent = cat;
                     select.appendChild(opt);
                 });
 
-                render();
-            } catch (err) {
-                document.getElementById('status').textContent = "❌ Error: Verifica que data.json exista en el mismo sitio.";
-                console.error(err);
+                renderizar();
+            } catch (error) {
+                document.getElementById('status').textContent = "❌ Error al cargar data.json";
+                console.error(error);
             }
         }
 
-        function getClase(riesgo) {
-            const r = norm(riesgo);
-            if (r.includes('alto') || r.includes('incompatible') || r === '5') return 'risk-alto';
-            if (r.includes('medio') || r.includes('precaucion') || r === '6') return 'risk-medio';
-            if (r.includes('bajo') || r.includes('compatible') || r === '1') return 'risk-bajo';
-            return 'risk-none';
-        }
-
-        function render() {
+        function renderizar() {
             const data = DBs[categoriaActual];
             const datalist = document.getElementById('productos');
             const header = document.getElementById('headerRow');
             const body = document.getElementById('tableBody');
 
+            // Lista de productos
             datalist.innerHTML = "";
-            header.innerHTML = '<th class="sticky-col px-4 py-3 text-xs font-bold uppercase text-slate-500">Producto</th>';
-            
             data.productos.forEach(p => {
                 const opt = document.createElement('option');
                 opt.value = p; datalist.appendChild(opt);
-                header.innerHTML += `<th class="px-3 py-3 text-[10px] font-bold uppercase text-slate-500 text-center min-w-[100px] border-l">${p}</th>`;
             });
 
+            // Cabecera tabla
+            header.innerHTML = '<th class="sticky-th px-4 py-2 bg-gray-100 text-left">Producto</th>';
+            data.productos.forEach(p => {
+                header.innerHTML += `<th class="sticky-th px-2 py-2 bg-gray-100 text-center">${p}</th>`;
+            });
+
+            // Cuerpo tabla
             body.innerHTML = "";
             data.productos.forEach(rowP => {
                 const tr = document.createElement('tr');
-                tr.className = "border-t border-slate-100 hover:bg-slate-50 transition";
-                tr.innerHTML = `<td class="sticky-col px-4 py-3 text-xs font-bold bg-white">${rowP}</td>`;
-                
+                tr.innerHTML = `<td class="font-bold px-4 py-2 border-b bg-white sticky left-0 z-1">${rowP}</td>`;
                 data.productos.forEach(colP => {
                     const td = document.createElement('td');
-                    td.className = "px-2 py-3 text-center border-l";
+                    td.className = "px-2 py-2 text-center border-b";
                     if(rowP === colP) {
-                        td.innerHTML = '<span class="text-slate-200">—</span>';
+                        td.innerHTML = '<span class="text-gray-300">-</span>';
                     } else {
                         const info = data.compat[pairKey(rowP, colP)];
-                        const r = info ? info.riesgo : "";
-                        const clase = getClase(r);
-                        td.innerHTML = `<div class="w-5 h-5 mx-auto rounded-full ${clase} shadow-sm" title="${r || 'Sin datos'}"></div>`;
-                        td.onclick = () => {
-                            document.getElementById('prodA').value = rowP;
-                            document.getElementById('prodB').value = colP;
-                            evaluar();
-                        };
-                        td.style.cursor = "pointer";
+                        const r = info ? info.riesgo : "Sin datos";
+                        const clase = r.toLowerCase().includes('no') ? 'risk-bad' : (r.toLowerCase().includes('pre') ? 'risk-caution' : (r.toLowerCase().includes('com') ? 'risk-ok' : 'risk-unknown'));
+                        td.innerHTML = `<div class="w-4 h-4 mx-auto rounded-full ${clase}" title="${r}"></div>`;
                     }
                     tr.appendChild(td);
                 });
@@ -179,31 +141,26 @@
             });
         }
 
-        function evaluar() {
+        document.getElementById('categoria').onchange = (e) => {
+            categoriaActual = e.target.value;
+            renderizar();
+        };
+
+        document.getElementById('btnEvaluar').onclick = () => {
             const a = document.getElementById('prodA').value;
             const b = document.getElementById('prodB').value;
             const resDiv = document.getElementById('resultado');
             
-            if(!a || !b) return;
-
             const info = DBs[categoriaActual].compat[pairKey(a, b)];
             resDiv.classList.remove('hidden');
-            
-            const r = info ? info.riesgo : "Sin registro";
+            const r = info ? info.riesgo : "Sin datos";
             const badge = document.getElementById('resRiesgo');
             badge.textContent = r;
-            badge.className = "badge " + getClase(r);
-            
-            document.getElementById('resLimpieza').textContent = info ? (info.limpieza || "No especificada") : "N/A";
-            document.getElementById('resNotas').textContent = info ? (info.notas || "Sin observaciones adicionales.") : "No se encontraron datos de compatibilidad para esta mezcla en la categoría seleccionada.";
-            
-            resDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+            badge.className = "badge " + (r.toLowerCase().includes('no') ? 'risk-bad' : (r.toLowerCase().includes('pre') ? 'risk-caution' : (r.toLowerCase().includes('com') ? 'risk-ok' : 'risk-unknown')));
+            document.getElementById('resNotas').textContent = info ? info.notas : "Sin detalles.";
+        };
 
-        document.getElementById('categoria').onchange = (e) => { categoriaActual = e.target.value; render(); };
-        document.getElementById('btnEvaluar').onclick = evaluar;
-
-        init();
+        cargarDatos();
     </script>
 </body>
 </html>
