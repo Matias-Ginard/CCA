@@ -1,55 +1,1164 @@
 {
   "Herbicidas": {
-    "productos": ["Glifosato", "Cletodim", "Glufosinato", "Triclopyr"],
+    "productos": [
+      "Cletodim",
+      "Glifosato",
+      "Glufosinato",
+      "Triclopyr"
+    ],
     "compat": {
-      "cletodim|glifosato": { "riesgo": "Alto", "limpieza": "9", "notas": "Incompatible NIVEL DE LIMPIEZA 9" },
-      "glifosato|glufosinato": { "riesgo": "Medio", "limpieza": "Media", "notas": "Usar con precaución" },
-      "cletodim|glufosinato": { "riesgo": "Bajo", "limpieza": "Baja", "notas": "Compatible" },
-      "glifosato|triclopyr": { "riesgo": "Alto", "limpieza": "Alta", "notas": "Incompatible" },
-      "cletodim|triclopyr": { "riesgo": "Sin registro", "limpieza": "-", "notas": "No especificado en matriz" }
+      "cletodim|glifosato": {
+        "riesgo": "Alto",
+        "limpieza": "Alta",
+        "notas": "Incompatible NIVEL DE LIMPIEZA 9"
+      },
+      "glifosato|glufosinato": {
+        "riesgo": "Medio",
+        "limpieza": "Media",
+        "notas": "Usar con precaución"
+      },
+      "cletodim|glufosinato": {
+        "riesgo": "Bajo",
+        "limpieza": "Baja",
+        "notas": "Compatible"
+      },
+      "glifosato|triclopyr": {
+        "riesgo": "Alto",
+        "limpieza": "Alta",
+        "notas": "Incompatible"
+      }
     }
   },
   "Fertilizantes": {
-    "productos": ["Urea", "Fosfato", "Nitrato de Amonio", "Siembra directa"],
+    "productos": [
+      "Fosfato",
+      "Nitrato de Amonio",
+      "Siembra directa",
+      "Urea"
+    ],
     "compat": {
-      "fosfato|urea": { "riesgo": "Bajo", "limpieza": "Baja", "notas": "Compatible" },
-      "nitratodeamonio|urea": { "riesgo": "Medio", "limpieza": "Media", "notas": "Precaución" },
-      "fosfato|nitratodeamonio": { "riesgo": "Alto", "limpieza": "Alta", "notas": "Incompatible" },
-      "fosfato|siembradirecta": { "riesgo": "Alto", "limpieza": "Alta", "notas": "Incompatible" }
+      "fosfato|urea": {
+        "riesgo": "Bajo",
+        "limpieza": "Baja",
+        "notas": "Compatible"
+      },
+      "nitratodeamonio|urea": {
+        "riesgo": "Medio",
+        "limpieza": "Media",
+        "notas": "Precaución"
+      },
+      "fosfato|nitratodeamonio": {
+        "riesgo": "Alto",
+        "limpieza": "Alta",
+        "notas": "Incompatible"
+      },
+      "fosfato|siembradirecta": {
+        "riesgo": "Alto",
+        "limpieza": "Alta",
+        "notas": "Incompatible"
+      }
     }
   },
   "FLOW": {
     "productos": [
-      "Paraquat 27,6% + Diuron 10%  SC (Herbicidas)",
-      "Atrazina 25% + Simazina 25% SC (Herbicidas)",
+      "Abamectina 8,4% SC Syngenta",
+      "Acetamiprid 20% + Piriproxifen 10% OD",
+      "Adyuvante Herbicidas 2",
+      "Atrazina 25% + Simazina 25% SC (Herbicidas) ",
       "Atrazina 50% SC (Herbicidas)",
+      "Azoxistrobin 12,5 %+ Propiconazole 25% SE",
+      "Azoxys12% + Cipro7,2% +Prothioconazole 10% SC",
+      "Azoxystrobin 15% + Prothioconazole 17,5% SC",
+      "Azoxystrobin 20% + Ciproconazole 12% SC",
+      "Azoxystrobin 20% + Ciproconazole 8% SC",
+      "Azoxystrobin 20% + Flutriafol 25% SC",
+      "Azoxystrobin 20% + Tebuconazole 20% SC",
+      "Azoxystrobin 25% + Ciproconazole 16% SC",
+      "Azoxystrobin 25% SC",
+      "Boro 10 % SC  (Fertilizantes)",
+      "Carbendazin 10% + Prothioconazole 5% + Pyraclostrobin 1,25% FS",
+      "Carbendazin 15% + Thiran 35% FS",
+      "Carbendazin 38% + Tebuconazole 10% SC",
+      "Carbendazin 50% SC",
+      "Carboxin 20% + Thiran 20% FS",
+      "Ciantraniliprole 30%  + Thiametoxam 30% SC",
+      "Clomazona 50% + Flumioxazin 4% OD",
+      "Clorantraniliprole 25% + Emamectina 12% FS",
+      "Clorantraniliprole 62,5% FS",
+      "Clorfenapyr 24% SC",
+      "Clorfenapyr 30% + Clorantraniliprole 8% SC",
+      "Clorfenapyr 40% + Lufenuron 6,66% SC",
+      "Clorotalonil 40% + Tebuconazole 4% + Bixafen 3,5 % SC",
+      "Clorotalonyl 40% + Tebuconazole 4% + Difeconazole 4% SC",
+      "Clorotalonyl 40% + Tebuconazole 4% + Picoxystrobin 3% SC",
+      "Clorotalonyl 40% + Tebuconazole 4% + Trifloxystrobin 3% SC",
+      "Clorotalonyl 72% SC",
+      "Clotianidin 10% + Fenpropatrina 9% SE",
+      "Clotianidin 20% + Fenpropatrina 18% OD",
+      "Diafenthiuron 50 % SC",
+      "Diflubenzuron 48% SC",
+      "Emamectina 5% + Lufenuron 20% SC",
+      "Ethiprole 25% + Bifentrhin 10% SC",
+      "Ethiprole 25% + Lambdacialotrina 10% SC",
+      "Fipro 25% + Piraclostrobin  3,12% + Fludio 2,5% + Metalaxyl 3,75% FS",
+      "Fipro 25% +Fludio 1,25% + Metalaxil 1,875%+Azoxys 2,5% FS",
+      "Fipro 25% +FludioxonilL 1,25% + Metalaxyl 1,875% FS",
+      "Fipronil 25 % FS",
+      "Fluazinam 40% + Tebuconazole 8% + Picoxistrobin 6% SC",
+      "Fludioxonil 2,5% + Metalaxil 3,75% FS",
+      "Flumioxazin 24% + Diclosulam 10% SC",
+      "Flumioxazin 50% SC",
+      "Flutriafol 25% SC",
+      "Glufosinato 40% + Saflufenacil 3% SC",
+      "Imazethapyr 20% + Flumioxazin 12% + Diclosulam 5% SC",
+      "Imidacloprid 10,5% + Thiodicarb 28% FS",
+      "Imidacloprid 21% + Thiodicarb 28% FS",
+      "Imidacloprid 21% + Thiodicarb 28% Foliar SC",
+      "Imidacloprid 30 % + Alfacipermetrina 15 % SC",
+      "Imidacloprid 40% + Bifentrin 15% SC",
       "Imidacloprid 60% FS",
       "Imidacloprid 60% Foliar SC",
-      "Imidacloprid 21% + Thiodicarb 28% Foliar SC",
+      "Isocycloseram 10% + Lambdacialotrina  15% ZC Syngenta",
+      "Lambdacialotrina 25% CS",
+      "Mancozeb 40 % + Prothio  3,2 % + Picoxystrobin 2,4 % ",
+      "Mancozeb 40 % + Prothio  3,2 % + Trifloxystrobin 2,4 % ",
+      "Mancozeb 40% + Prothioconazole 2,5% + Benzovindiflupyr 1,36% OD",
+      "Mancozeb 40% + Prothioconazole 2,5% + Benzovindiflupyr 1,36% SC",
+      "Mancozeb 40% + Prothioconazole  3,36% + Fluindapir 3,36% SC",
+      "Mancozeb 40% + Ptothioconazole 3,2% + Bixafen 2,8% SC",
+      "Mancozeb 40% + Tebuconazole 3,5 + Picoxystrobin 2,8% OD ",
+      "Mancozeb 44,5% SC",
+      "Mancozeb 50 % + Prothio  2,5 % + Azoxystrobin 2 % SC",
+      "Mancozeb 50 % + Prothio  2,5 % + Picoxystrobin 2 % SC",
+      "Mancozeb 50 % + Prothio  2,5 % + Pyraclostrobin 2 % SC",
+      "Mancozeb 50 % + Prothio  2,5 % + Trifloxystrobin 2 % SC",
+      "Mancozeb 50% SC",
+      "Mancozeb 60 % SC",
+      "Metoxifenocide 48% SC",
+      "Paraquat 27,6% + Diuron 10%  SC  (Herbicidas) ",
+      "Paraquat 27,6% + Diuron 10%  SC (Herbicidas)",
+      "Picoxystrobin 15 % + Prothioconazole 17,5% SC",
+      "Picoxystrobin 20% + Ciproconazole 16% SC",
+      "Prothioconazole 17.5% + Trifloxystrobin 15% SC ",
+      "Sulfentrazone  50% SC",
+      "Tebuconazole 20% + Difenoconazole 20% SC",
+      "Tebuconazole 20% + Picoxystrobin 12% SC",
+      "Tebuconazole 43 % SC",
+      "Tebuconazole 6% FS",
+      "Tebuthiuron 50% SC",
+      "Teflubenzuron 20 + Emamectina 5% SC",
+      "Teflubenzuron 30% SC",
       "Terbutilazina 40% + Mesotrione 6% SC",
-      "Ethiprole 25% + Lambdacialotrina 10% SC",
       "Thiametoxam 30% + Clorantraniliprole 24% FS",
       "Thiametoxam 30% + Clorantraniliprole 24% SC",
-      "Mancozeb 40% + Ptothioconazole 3,2% + Bixafen 2,8% SC",
-      "Clorfenapyr 30% + Clorantraniliprole 8% SC",
-      "Ciantraniliprole 30%  + Thiametoxam 30% SC",
-      "Fluazinam 40% + Tebuconazole 8% + Picoxistrobin 6% SC"
+      "Thiametoxam 60 % FS",
+      "Thiametoxan 14,1% + Lambdacialotrina 10,6% ZC",
+      "Thiametoxan 21% + Fempropatrina 18% OD",
+      "Thiametoxan 25% + Bifentrin 10% OD",
+      "Thiametoxan 30% + Bifentrin 20% SC",
+      "Thiametoxan 35% FS",
+      "Thiametoxan 60% SC",
+      "Tiofanato Metil 30% + Fludioxonil 5% + Trifloxystrobin 5% FS",
+      "Tiofanato Metil 36% + Piraclostrobin 6% + Fludioxonil 5% FS",
+      "Triclopyr 48 % + Diclosulan 2,5 %  OD (Herbicidas) * ",
+      "Trifloxystrobin 15% + Ciproconazole 12,5% SC"
     ],
     "compat": {
-      "paraquat276diuron10scherbicidas|paraquat276diuron10scherbicidas": { "riesgo": "Bajo", "limpieza": "1", "notas": "Mismo producto" },
-      "atrazina25simazina25scherbicidas|paraquat276diuron10scherbicidas": { "riesgo": "Alto", "limpieza": "5", "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida" },
-      "atrazina50scherbicidas|paraquat276diuron10scherbicidas": { "riesgo": "Alto", "limpieza": "5", "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida" },
-      "imidacloprid60fs|paraquat276diuron10scherbicidas": { "riesgo": "Alto", "limpieza": "5", "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida" },
-      "imidacloprid60foliarsc|paraquat276diuron10scherbicidas": { "riesgo": "Alto", "limpieza": "5", "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida" },
-      "imidacloprid21thiodicarb28foliarsc|paraquat276diuron10scherbicidas": { "riesgo": "Alto", "limpieza": "5", "notas": "Riesgo Alto: menor a 100 ppm" },
-      "atrazina25simazina25scherbicidas|terbutilazina40mesotrione6sc": { "riesgo": "Bajo", "limpieza": "2", "notas": "Compatible" },
-      "atrazina25simazina25scherbicidas|ethiprole25lambdacialotrina10sc": { "riesgo": "Bajo", "limpieza": "1", "notas": "Compatible" },
-      "atrazina25simazina25scherbicidas|thiametoxam30clorantraniliprole24fs": { "riesgo": "Alto", "limpieza": "5", "notas": "Riesgo Alto por concentración" },
-      "atrazina25simazina25scherbicidas|thiametoxam30clorantraniliprole24sc": { "riesgo": "Alto", "limpieza": "5", "notas": "Riesgo Alto" },
-      "atrazina25simazina25scherbicidas|mancozeb40ptothioconazole32bixafen28sc": { "riesgo": "Alto", "limpieza": "5", "notas": "Incompatible" },
-      "atrazina25simazina25scherbicidas|clorfenapyr30clorantraniliprole8sc": { "riesgo": "Alto", "limpieza": "5", "notas": "Riesgo Alto" },
-      "atrazina25simazina25scherbicidas|ciantraniliprole30thiametoxam30sc": { "riesgo": "Alto", "limpieza": "5", "notas": "Incompatible" },
-      "atrazina25simazina25scherbicidas|fluazinam40tebuconazole8picoxistrobin6sc": { "riesgo": "Alto", "limpieza": "5", "notas": "Riesgo Alto" }
+      "paraquat276diuron10scherbicidas|paraquat276diuron10scherbicidas": {
+        "riesgo": "Bajo",
+        "limpieza": "1",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "atrazina50scherbicidas|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "imidacloprid60fs|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "imidacloprid60foliarsc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "imidacloprid21thiodicarb28foliarsc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "imidacloprid21thiodicarb28fs|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "imidacloprid105thiodicarb28fs|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|tebuconazole6fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "carbendazin50sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "carbendazin38tebuconazole10sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "carboxin20thiran20fs|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "carbendazin15thiran35fs|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "flutriafol25sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "azoxystrobin25sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "azoxystrobin20flutriafol25sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "fipronil25fs|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "azoxystrobin20tebuconazole20sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "azoxystrobin20ciproconazole8sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "azoxystrobin20ciproconazole12sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "azoxystrobin25ciproconazole16sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "azoxistrobin125propiconazole25se|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "6",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|thiametoxan35fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "fludioxonil25metalaxil375fs|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|thiametoxan60sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|thiametoxan30bifentrin20sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "fipro25fludioxonill125metalaxyl1875fs|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "fipro25fludio125metalaxil1875azoxys25fs|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "emamectina5lufenuron20sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|teflubenzuron20emamectina5sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|teflubenzuron30sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "azoxys12cipro72prothioconazole10sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "azoxystrobin15prothioconazole175sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "imidacloprid40bifentrin15sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|thiametoxan141lambdacialotrina106zc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "fipro25piraclostrobin312fludio25metalaxyl375fs|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|picoxystrobin20ciproconazole16sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "diafenthiuron50sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "imidacloprid30alfacipermetrina15sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|thiametoxam60fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "mancozeb60sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "mancozeb50prothio25azoxystrobin2sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "mancozeb50prothio25trifloxystrobin2sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "mancozeb40prothio32trifloxystrobin24|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "mancozeb50prothio25pyraclostrobin2sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "mancozeb50prothio25picoxystrobin2sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "mancozeb40prothio32picoxystrobin24|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "clorotalonyl72sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "boro10scfertilizantes|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|triclopyr48diclosulan25odherbicidas": {
+        "riesgo": "Medio",
+        "limpieza": "6",
+        "notas": "Riesgo medio: menor a 500 ppm"
+      },
+      "paraquat276diuron10scherbicidas|picoxystrobin15prothioconazole175sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|trifloxystrobin15ciproconazole125sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "mancozeb50sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|tebuconazole43sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "clorfenapyr24sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "metoxifenocide48sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|tiofanatometil30fludioxonil5trifloxystrobin5fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "mancozeb40tebuconazole35picoxystrobin28od|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "6",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "ethiprole25bifentrhin10sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "clorfenapyr40lufenuron666sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "carbendazin10prothioconazole5pyraclostrobin125fs|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|tebuthiuron50sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "flumioxazin50sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|tiofanatometil36piraclostrobin6fludioxonil5fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "diflubenzuron48sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "mancozeb40prothioconazole25benzovindiflupyr136sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "mancozeb40prothioconazole25benzovindiflupyr136od|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "6",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|thiametoxan25bifentrin10od": {
+        "riesgo": "Alto",
+        "limpieza": "6",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|sulfentrazone50sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "abamectina84scsyngenta|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "10",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "isocycloseram10lambdacialotrina15zcsyngenta|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "10",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "adyuvanteherbicidas2|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "6",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|tebuconazole20picoxystrobin12sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|thiametoxan21fempropatrina18od": {
+        "riesgo": "Alto",
+        "limpieza": "6",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "imazethapyr20flumioxazin12diclosulam5sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Bajo",
+        "limpieza": "2",
+        "notas": "Riesgo bajo: menor a 1000 ppm"
+      },
+      "clomazona50flumioxazin4od|paraquat276diuron10scherbicidas": {
+        "riesgo": "Bajo",
+        "limpieza": "6",
+        "notas": "Riesgo bajo: menor a 1000 ppm"
+      },
+      "flumioxazin24diclosulam10sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|tebuconazole20difenoconazole20sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "clorantraniliprole625fs|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "clorantraniliprole25emamectina12fs|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "clorotalonyl40tebuconazole4picoxystrobin3sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "lambdacialotrina25cs|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "mancozeb445sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "clorotalonyl40tebuconazole4trifloxystrobin3sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "clorotalonyl40tebuconazole4difeconazole4sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "glufosinato40saflufenacil3sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Bajo",
+        "limpieza": "2",
+        "notas": "Riesgo bajo: menor a 1000 ppm"
+      },
+      "paraquat276diuron10scherbicidas|terbutilazina40mesotrione6sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "ethiprole25lambdacialotrina10sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|thiametoxam30clorantraniliprole24fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|thiametoxam30clorantraniliprole24sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "mancozeb40ptothioconazole32bixafen28sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "clorfenapyr30clorantraniliprole8sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "ciantraniliprole30thiametoxam30sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "fluazinam40tebuconazole8picoxistrobin6sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "clotianidin20fenpropatrina18od|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "6",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "mancozeb40prothioconazole336fluindapir336sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "clorotalonil40tebuconazole4bixafen35sc|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "acetamiprid20piriproxifen10od|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "clotianidin10fenpropatrina9se|paraquat276diuron10scherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "paraquat276diuron10scherbicidas|prothioconazole175trifloxystrobin15sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": "Riesgo Alto: menor a 100 ppm y hasta 1 ppm de herbicida a no herbicida"
+      },
+      "atrazina25simazina25scherbicidas|atrazina25simazina25scherbicidas": {
+        "riesgo": "Medio",
+        "limpieza": "2",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|atrazina50scherbicidas": {
+        "riesgo": "Bajo",
+        "limpieza": "1",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|imidacloprid60fs": {
+        "riesgo": "Bajo",
+        "limpieza": "1",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|imidacloprid60foliarsc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|imidacloprid21thiodicarb28foliarsc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|imidacloprid21thiodicarb28fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|imidacloprid105thiodicarb28fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|tebuconazole6fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|carbendazin50sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|carbendazin38tebuconazole10sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|carboxin20thiran20fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|carbendazin15thiran35fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|flutriafol25sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|azoxystrobin25sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|azoxystrobin20flutriafol25sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|fipronil25fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|azoxystrobin20tebuconazole20sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|azoxystrobin20ciproconazole8sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|azoxystrobin20ciproconazole12sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|azoxystrobin25ciproconazole16sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|azoxistrobin125propiconazole25se": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|thiametoxan35fs": {
+        "riesgo": "Alto",
+        "limpieza": "6",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|fludioxonil25metalaxil375fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|thiametoxan60sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|thiametoxan30bifentrin20sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|fipro25fludioxonill125metalaxyl1875fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|fipro25fludio125metalaxil1875azoxys25fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|emamectina5lufenuron20sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|teflubenzuron20emamectina5sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|teflubenzuron30sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|azoxys12cipro72prothioconazole10sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|azoxystrobin15prothioconazole175sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|imidacloprid40bifentrin15sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|thiametoxan141lambdacialotrina106zc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|fipro25piraclostrobin312fludio25metalaxyl375fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|picoxystrobin20ciproconazole16sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|diafenthiuron50sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|imidacloprid30alfacipermetrina15sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|thiametoxam60fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|mancozeb60sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|mancozeb50prothio25azoxystrobin2sc": {
+        "riesgo": "No compatible",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|mancozeb50prothio25trifloxystrobin2sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|mancozeb40prothio32trifloxystrobin24": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|mancozeb50prothio25pyraclostrobin2sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|mancozeb50prothio25picoxystrobin2sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|mancozeb40prothio32picoxystrobin24": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|clorotalonyl72sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|boro10scfertilizantes": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|triclopyr48diclosulan25odherbicidas": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|picoxystrobin15prothioconazole175sc": {
+        "riesgo": "Alto",
+        "limpieza": "6",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|trifloxystrobin15ciproconazole125sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|mancozeb50sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|tebuconazole43sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|clorfenapyr24sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|metoxifenocide48sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|tiofanatometil30fludioxonil5trifloxystrobin5fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|mancozeb40tebuconazole35picoxystrobin28od": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|ethiprole25bifentrhin10sc": {
+        "riesgo": "Alto",
+        "limpieza": "6",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|clorfenapyr40lufenuron666sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|carbendazin10prothioconazole5pyraclostrobin125fs": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|tebuthiuron50sc": {
+        "riesgo": "Alto",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|flumioxazin50sc": {
+        "riesgo": "Bajo",
+        "limpieza": "1",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|tiofanatometil36piraclostrobin6fludioxonil5fs": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|diflubenzuron48sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|mancozeb40prothioconazole25benzovindiflupyr136sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|mancozeb40prothioconazole25benzovindiflupyr136od": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|thiametoxan25bifentrin10od": {
+        "riesgo": "",
+        "limpieza": "6",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|sulfentrazone50sc": {
+        "riesgo": "",
+        "limpieza": "6",
+        "notas": ""
+      },
+      "abamectina84scsyngenta|atrazina25simazina25scherbicidas": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|isocycloseram10lambdacialotrina15zcsyngenta": {
+        "riesgo": "",
+        "limpieza": "10",
+        "notas": ""
+      },
+      "adyuvanteherbicidas2|atrazina25simazina25scherbicidas": {
+        "riesgo": "",
+        "limpieza": "10",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|tebuconazole20picoxystrobin12sc": {
+        "riesgo": "",
+        "limpieza": "6",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|thiametoxan21fempropatrina18od": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|imazethapyr20flumioxazin12diclosulam5sc": {
+        "riesgo": "",
+        "limpieza": "6",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|clomazona50flumioxazin4od": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|flumioxazin24diclosulam10sc": {
+        "riesgo": "",
+        "limpieza": "6",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|tebuconazole20difenoconazole20sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|clorantraniliprole625fs": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|clorantraniliprole25emamectina12fs": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|clorotalonyl40tebuconazole4picoxystrobin3sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|lambdacialotrina25cs": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|mancozeb445sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|clorotalonyl40tebuconazole4trifloxystrobin3sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|clorotalonyl40tebuconazole4difeconazole4sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|glufosinato40saflufenacil3sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|terbutilazina40mesotrione6sc": {
+        "riesgo": "",
+        "limpieza": "2",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|ethiprole25lambdacialotrina10sc": {
+        "riesgo": "",
+        "limpieza": "1",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|thiametoxam30clorantraniliprole24fs": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|thiametoxam30clorantraniliprole24sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|mancozeb40ptothioconazole32bixafen28sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|clorfenapyr30clorantraniliprole8sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|ciantraniliprole30thiametoxam30sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|fluazinam40tebuconazole8picoxistrobin6sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|clotianidin20fenpropatrina18od": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|mancozeb40prothioconazole336fluindapir336sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|clorotalonil40tebuconazole4bixafen35sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "acetamiprid20piriproxifen10od|atrazina25simazina25scherbicidas": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|clotianidin10fenpropatrina9se": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      },
+      "atrazina25simazina25scherbicidas|prothioconazole175trifloxystrobin15sc": {
+        "riesgo": "",
+        "limpieza": "5",
+        "notas": ""
+      }
     }
   }
 }
