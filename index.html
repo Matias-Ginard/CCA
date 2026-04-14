@@ -6,10 +6,11 @@
     <title>Consulta Agroquímicos – JSON DB</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .risk-ok { background: #dcfce7 !important; color: #065f46 !important; }
-        .risk-caution { background: #fef9c3 !important; color: #854d0e !important; }
-        .risk-bad { background: #fee2e2 !important; color: #991b1b !important; }
-        .risk-unknown { background: #e5e7eb !important; color: #374151 !important; }
+        /* Forzamos que los colores se vean correctamente */
+        .risk-ok { background-color: #dcfce7 !important; color: #065f46 !important; }
+        .risk-caution { background-color: #fef9c3 !important; color: #854d0e !important; }
+        .risk-bad { background-color: #fee2e2 !important; color: #991b1b !important; }
+        .risk-unknown { background-color: #e5e7eb !important; color: #374151 !important; }
         .badge { padding: .25rem .5rem; border-radius: .5rem; font-weight: 600; display:inline-block; font-size: 12px; }
         .sticky-th { position: sticky; top: 0; background: white; z-index: 10; border-bottom: 2px solid #e5e7eb; }
     </style>
@@ -52,9 +53,9 @@
             <div class="bg-white rounded-2xl shadow p-6">
                 <h2 class="font-bold mb-3">Referencias</h2>
                 <div class="space-y-2">
-                    <div class="flex items-center gap-2"><div class="w-3 h-3 risk-ok rounded-full"></div> <span class="text-xs">Compatible / Bajo</span></div>
-                    <div class="flex items-center gap-2"><div class="w-3 h-3 risk-caution rounded-full"></div> <span class="text-xs">Precaución / Medio</span></div>
-                    <div class="flex items-center gap-2"><div class="w-3 h-3 risk-bad rounded-full"></div> <span class="text-xs">Incompatible / Alto</span></div>
+                    <div class="flex items-center gap-2"><div class="w-3 h-3 risk-ok rounded-full"></div> <span class="text-xs">Compatible</span></div>
+                    <div class="flex items-center gap-2"><div class="w-3 h-3 risk-caution rounded-full"></div> <span class="text-xs">Precaución</span></div>
+                    <div class="flex items-center gap-2"><div class="w-3 h-3 risk-bad rounded-full"></div> <span class="text-xs">Incompatible</span></div>
                 </div>
             </div>
         </div>
@@ -76,12 +77,12 @@
         const norm = s => (s || "").toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
         const pairKey = (a,b) => { const A = norm(a), B = norm(b); return A < B ? `${A}|${B}` : `${B}|${A}`; };
 
-        // Función para determinar la clase de color basada en el texto de riesgo
-        function getRiskClass(riesgo) {
-            const r = norm(riesgo);
-            if (r.includes('alto') || r.includes('no') || r.includes('incompatible')) return 'risk-bad';
-            if (r.includes('medio') || r.includes('pre') || r.includes('precaucion')) return 'risk-caution';
-            if (r.includes('bajo') || r.includes('com') || r.includes('compatible')) return 'risk-ok';
+        // Función para asignar color según el texto de riesgo
+        function asignarClase(r) {
+            const riesgo = norm(r);
+            if (riesgo.includes('no') || riesgo.includes('alto') || riesgo.includes('incompatible')) return 'risk-bad';
+            if (riesgo.includes('pre') || riesgo.includes('medio') || riesgo.includes('precaucion')) return 'risk-caution';
+            if (riesgo.includes('com') || riesgo.includes('bajo') || riesgo.includes('compatible')) return 'risk-ok';
             return 'risk-unknown';
         }
 
@@ -89,7 +90,6 @@
             try {
                 const respuesta = await fetch('data.json');
                 DBs = await respuesta.json();
-                
                 document.getElementById('status').textContent = "✅ Base de datos online";
                 
                 const select = document.getElementById('categoria');
@@ -110,6 +110,8 @@
 
         function renderizar() {
             const data = DBs[categoriaActual];
+            if(!data) return;
+
             const datalist = document.getElementById('productos');
             const header = document.getElementById('headerRow');
             const body = document.getElementById('tableBody');
@@ -137,7 +139,7 @@
                     } else {
                         const info = data.compat[pairKey(rowP, colP)];
                         const r = info ? info.riesgo : "Sin datos";
-                        const clase = getRiskClass(r);
+                        const clase = asignarClase(r);
                         td.innerHTML = `<div class="w-4 h-4 mx-auto rounded-full ${clase}" title="${r}"></div>`;
                     }
                     tr.appendChild(td);
@@ -159,9 +161,10 @@
             const info = DBs[categoriaActual].compat[pairKey(a, b)];
             resDiv.classList.remove('hidden');
             const r = info ? info.riesgo : "Sin datos";
+            
             const badge = document.getElementById('resRiesgo');
             badge.textContent = r;
-            badge.className = "badge " + getRiskClass(r);
+            badge.className = "badge " + asignarClase(r);
             document.getElementById('resNotas').textContent = info ? info.notas : "Sin detalles.";
         };
 
