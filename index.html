@@ -6,26 +6,28 @@
     <title>Consulta Agroquímicos – JSON DB</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Colores reforzados para que se vean bien */
-        .risk-ok { background-color: #22c55e !important; color: white !important; } /* Verde fuerte */
-        .risk-caution { background-color: #eab308 !important; color: white !important; } /* Amarillo fuerte */
-        .risk-bad { background-color: #ef4444 !important; color: white !important; } /* Rojo fuerte */
-        .risk-unknown { background-color: #9ca3af !important; color: white !important; }
+        .risk-ok { background-color: #22c55e !important; } 
+        .risk-caution { background-color: #facc15 !important; } 
+        .risk-bad { background-color: #ef4444 !important; } 
+        .risk-unknown { background-color: #9ca3af !important; } 
         
-        .badge { padding: .25rem .75rem; border-radius: .5rem; font-weight: bold; display:inline-block; font-size: 14px; }
+        .badge { padding: .25rem .75rem; border-radius: .5rem; font-weight: 800; display:inline-block; font-size: 13px; color: #fff; }
+        .dot { width: 22px; height: 22px; border-radius: 999px; margin: 0 auto; cursor: pointer; transition: transform 0.1s; }
+        .dot:hover { transform: scale(1.2); border: 2px solid #000; }
         .sticky-th { position: sticky; top: 0; background: white; z-index: 10; border-bottom: 2px solid #e5e7eb; }
+        .sticky-col { position: sticky; left: 0; background: white; z-index: 5; border-right: 2px solid #e5e7eb; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
     <div class="max-w-6xl mx-auto p-4 md:p-8">
         <header class="mb-6">
             <h1 class="text-2xl md:text-3xl font-bold">Consulta de compatibilidad</h1>
-            <p id="status" class="text-sm text-blue-600">Cargando base de datos...</p>
+            <p id="status" class="text-sm text-blue-600 font-semibold">Cargando base de datos...</p>
         </header>
 
         <section class="flex items-center gap-4 mb-4">
             <label class="text-sm font-medium">Categoría:</label>
-            <select id="categoria" class="rounded-xl border px-3 py-2 bg-white outline-none focus:ring-2 focus:ring-blue-500"></select>
+            <select id="categoria" class="rounded-xl border px-3 py-2 bg-white outline-none focus:ring-2 focus:ring-blue-500 font-bold shadow-sm"></select>
         </section>
 
         <div class="grid md:grid-cols-3 gap-6 mb-8">
@@ -41,22 +43,23 @@
                     </div>
                 </div>
                 <datalist id="productos"></datalist>
-                <button id="btnEvaluar" class="mt-4 w-full bg-gray-900 text-white py-2 rounded-xl font-bold hover:bg-black transition">Evaluar Mezcla</button>
+                <button id="btnEvaluar" class="mt-4 w-full bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-black transition shadow-lg">Evaluar Mezcla</button>
                 
                 <div id="resultado" class="mt-6 p-4 border-2 border-dashed rounded-xl hidden">
                     <div class="flex items-center gap-2 mb-2">
                         <span id="resRiesgo" class="badge"></span>
                     </div>
-                    <p id="resNotas" class="text-sm text-gray-600 italic"></p>
+                    <p id="resNotas" class="text-sm text-gray-600 font-medium"></p>
                 </div>
             </div>
 
             <div class="bg-white rounded-2xl shadow p-6">
                 <h2 class="font-bold mb-3">Referencias</h2>
-                <div class="space-y-2">
-                    <div class="flex items-center gap-2"><div class="w-4 h-4 risk-ok rounded-full"></div> <span class="text-xs font-bold">Compatible</span></div>
-                    <div class="flex items-center gap-2"><div class="w-4 h-4 risk-caution rounded-full"></div> <span class="text-xs font-bold">Precaución</span></div>
-                    <div class="flex items-center gap-2"><div class="w-4 h-4 risk-bad rounded-full"></div> <span class="text-xs font-bold">Incompatible</span></div>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3"><div class="dot risk-ok"></div> <span class="text-xs font-bold">Compatible</span></div>
+                    <div class="flex items-center gap-3"><div class="dot risk-caution"></div> <span class="text-xs font-bold">Precaución</span></div>
+                    <div class="flex items-center gap-3"><div class="dot risk-bad"></div> <span class="text-xs font-bold">Incompatible</span></div>
+                    <p class="text-[10px] text-gray-400 mt-2">* Haz clic en los círculos de la tabla para evaluar rápido.</p>
                 </div>
             </div>
         </div>
@@ -78,61 +81,59 @@
         const norm = s => (s || "").toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
         const pairKey = (a,b) => { const A = norm(a), B = norm(b); return A < B ? `${A}|${B}` : `${B}|${A}`; };
 
-        function obtenerClaseColor(valor) {
-            const t = norm(valor);
+        function getClase(txt) {
+            const t = norm(txt);
             if (t.includes('alto') || t.includes('incompatible') || t.includes('no')) return 'risk-bad';
             if (t.includes('medio') || t.includes('preca') || t.includes('alerta')) return 'risk-caution';
             if (t.includes('bajo') || t.includes('compatible') || t === 'si') return 'risk-ok';
             return 'risk-unknown';
         }
 
-        async function cargarDatos() {
+        async function cargar() {
             try {
-                const respuesta = await fetch('data.json');
-                DBs = await respuesta.json();
+                const r = await fetch('data.json');
+                DBs = await r.json();
                 document.getElementById('status').textContent = "✅ Base de datos online";
-                
                 const select = document.getElementById('categoria');
-                select.innerHTML = "";
-                Object.keys(DBs).forEach((cat, index) => {
-                    if(index === 0) categoriaActual = cat;
+                Object.keys(DBs).forEach((cat, i) => {
+                    if(i === 0) categoriaActual = cat;
                     const opt = document.createElement('option');
                     opt.value = cat; opt.textContent = cat;
                     select.appendChild(opt);
                 });
                 renderizar();
-            } catch (error) {
-                document.getElementById('status').textContent = "❌ Error al cargar data.json";
-            }
+            } catch (e) { document.getElementById('status').textContent = "❌ Error al cargar data.json"; }
+        }
+
+        function evaluar(a, b) {
+            document.getElementById('prodA').value = a;
+            document.getElementById('prodB').value = b;
+            const info = DBs[categoriaActual].compat[pairKey(a, b)];
+            const resDiv = document.getElementById('resultado');
+            resDiv.classList.remove('hidden');
+            const riesgoTxt = info ? info.riesgo : "Sin datos";
+            const badge = document.getElementById('resRiesgo');
+            badge.textContent = riesgoTxt.toUpperCase();
+            badge.className = "badge " + getClase(riesgoTxt);
+            document.getElementById('resNotas').textContent = info ? (info.notas || "Sin notas.") : "No hay datos.";
         }
 
         function renderizar() {
             const data = DBs[categoriaActual];
-            if (!data) return;
-
             const datalist = document.getElementById('productos');
             const header = document.getElementById('headerRow');
             const body = document.getElementById('tableBody');
 
-            // Actualizar lista de autocompletado
             datalist.innerHTML = "";
-            data.productos.forEach(p => {
-                const opt = document.createElement('option');
-                opt.value = p; 
-                datalist.appendChild(opt);
-            });
+            data.productos.forEach(p => { const opt = new Option(p, p); datalist.appendChild(opt); });
 
-            // Tabla - Cabecera
-            header.innerHTML = '<th class="sticky-th px-4 py-2 bg-gray-100 text-left border-r">Producto</th>';
-            data.productos.forEach(p => {
-                header.innerHTML += `<th class="sticky-th px-2 py-2 bg-gray-100 text-center border-x">${p}</th>`;
-            });
+            header.innerHTML = '<th class="sticky-th px-4 py-3 bg-gray-100 text-left sticky-col">Producto</th>';
+            data.productos.forEach(p => { header.innerHTML += `<th class="sticky-th px-2 py-3 bg-gray-100 text-center border-x">${p}</th>`; });
 
-            // Tabla - Cuerpo
             body.innerHTML = "";
             data.productos.forEach(rowP => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td class="font-bold px-4 py-2 border-b border-r bg-white sticky left-0 z-1">${rowP}</td>`;
+                tr.innerHTML = `<td class="font-bold px-4 py-2 border-b bg-white sticky-col">${rowP}</td>`;
                 data.productos.forEach(colP => {
                     const td = document.createElement('td');
                     td.className = "px-2 py-2 text-center border-b border-r";
@@ -140,9 +141,11 @@
                         td.innerHTML = '<span class="text-gray-300">-</span>';
                     } else {
                         const info = data.compat[pairKey(rowP, colP)];
-                        const riesgoTexto = info ? info.riesgo : "Sin datos";
-                        const clase = obtenerClaseColor(riesgoTexto);
-                        td.innerHTML = `<div class="w-5 h-5 mx-auto rounded-full ${clase}" title="${riesgoTexto}"></div>`;
+                        const riesgo = info ? info.riesgo : "Sin datos";
+                        const circulo = document.createElement('div');
+                        circulo.className = `dot ${getClase(riesgo)}`;
+                        circulo.onclick = () => evaluar(rowP, colP);
+                        td.appendChild(circulo);
                     }
                     tr.appendChild(td);
                 });
@@ -150,29 +153,10 @@
             });
         }
 
-        document.getElementById('categoria').onchange = (e) => {
-            categoriaActual = e.target.value;
-            renderizar();
-        };
+        document.getElementById('categoria').onchange = (e) => { categoriaActual = e.target.value; renderizar(); };
+        document.getElementById('btnEvaluar').onclick = () => evaluar(document.getElementById('prodA').value, document.getElementById('prodB').value);
 
-        document.getElementById('btnEvaluar').onclick = () => {
-            const a = document.getElementById('prodA').value;
-            const b = document.getElementById('prodB').value;
-            const resDiv = document.getElementById('resultado');
-            
-            if(!DBs[categoriaActual].compat) return;
-
-            const info = DBs[categoriaActual].compat[pairKey(a, b)];
-            resDiv.classList.remove('hidden');
-            
-            const r = info ? info.riesgo : "Sin datos";
-            const badge = document.getElementById('resRiesgo');
-            badge.textContent = r;
-            badge.className = "badge " + obtenerClaseColor(r);
-            document.getElementById('resNotas').textContent = info ? info.notas : "No hay detalles registrados para esta mezcla.";
-        };
-
-        cargarDatos();
+        cargar();
     </script>
 </body>
 </html>
