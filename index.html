@@ -3,15 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Consulta Agroquímicos – SQL Edition</title>
+    <title>Consulta Agroquímicos – JSON DB</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .risk-ok { background-color: #22c55e !important; } 
         .risk-caution { background-color: #facc15 !important; } 
         .risk-bad { background-color: #ef4444 !important; } 
         .risk-unknown { background-color: #9ca3af !important; } 
+        
         .badge { padding: .25rem .75rem; border-radius: .5rem; font-weight: 800; display:inline-block; font-size: 13px; color: #fff; }
-        .dot { width: 22px; height: 22px; border-radius: 999px; margin: 0 auto; cursor: pointer; transition: transform 0.1s; border: 1px solid rgba(0,0,0,0.1); }
+        .dot { width: 22px; height: 22px; border-radius: 999px; margin: 0 auto; cursor: pointer; transition: transform 0.1s; }
         .dot:hover { transform: scale(1.2); border: 2px solid #000; }
         .sticky-th { position: sticky; top: 0; background: white; z-index: 10; border-bottom: 2px solid #e5e7eb; }
         .sticky-col { position: sticky; left: 0; background: white; z-index: 5; border-right: 2px solid #e5e7eb; }
@@ -19,45 +20,51 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
     <div class="max-w-6xl mx-auto p-4 md:p-8">
-        <header class="mb-6 flex justify-between items-center">
-            <div>
-                <h1 class="text-2xl md:text-3xl font-bold tracking-tight">Gestión de Compatibilidad</h1>
-                <p id="status" class="text-sm text-blue-600 font-semibold">Conectando a SQL...</p>
-            </div>
-            <button id="btnAbrirCarga" class="bg-gray-900 text-white px-5 py-2 rounded-xl font-bold hover:bg-black transition flex items-center gap-2">
-                <span>🔒</span> Panel de Edición
-            </button>
+        <header class="mb-6">
+            <h1 class="text-2xl md:text-3xl font-bold">Consulta de compatibilidad</h1>
+            <p id="status" class="text-sm text-blue-600 font-semibold">Cargando base de datos...</p>
         </header>
 
+        <section class="flex items-center gap-4 mb-4">
+            <label class="text-sm font-medium">Categoría:</label>
+            <select id="categoria" class="rounded-xl border px-3 py-2 bg-white outline-none focus:ring-2 focus:ring-blue-500 font-bold shadow-sm"></select>
+        </section>
+
         <div class="grid md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-white rounded-3xl shadow-sm border p-6 md:col-span-2">
-                <div class="mb-6">
-                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Categoría</label>
-                    <select id="categoria" class="w-full mt-1 rounded-xl border px-4 py-3 bg-gray-50 font-bold outline-none focus:ring-2 focus:ring-blue-500"></select>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input list="productos" id="prodA" class="rounded-xl border px-4 py-3 outline-none" placeholder="Producto A">
-                    <input list="productos" id="prodB" class="rounded-xl border px-4 py-3 outline-none" placeholder="Producto B">
+            <div class="bg-white rounded-2xl shadow p-6 md:col-span-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-500">Producto A</label>
+                        <input list="productos" id="prodA" class="mt-1 w-full rounded-xl border px-3 py-2" placeholder="Escriba producto..." />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-500">Producto B</label>
+                        <input list="productos" id="prodB" class="mt-1 w-full rounded-xl border px-3 py-2" placeholder="Escriba producto..." />
+                    </div>
                 </div>
                 <datalist id="productos"></datalist>
-                <button id="btnEvaluar" class="mt-6 w-full bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-lg">Analizar Mezcla</button>
-                <div id="resultado" class="mt-8 p-6 bg-gray-50 rounded-2xl border-2 border-dashed hidden">
-                    <div id="resRiesgo" class="badge mb-3"></div>
-                    <p id="resNotas" class="text-gray-600 font-medium"></p>
+                <button id="btnEvaluar" class="mt-4 w-full bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-black transition shadow-lg">Evaluar Mezcla</button>
+                
+                <div id="resultado" class="mt-6 p-4 border-2 border-dashed rounded-xl hidden">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span id="resRiesgo" class="badge"></span>
+                    </div>
+                    <p id="resNotas" class="text-sm text-gray-600 font-medium"></p>
                 </div>
             </div>
-            <div class="bg-white rounded-3xl shadow-sm border p-6">
-                <h2 class="font-bold mb-4 text-xs text-gray-400 uppercase tracking-widest">Niveles de Riesgo</h2>
-                <div class="space-y-4 text-sm font-bold">
-                    <div class="flex items-center gap-4"><div class="dot risk-ok"></div> Bajo (Verde)</div>
-                    <div class="flex items-center gap-4"><div class="dot risk-caution"></div> Medio (Amarillo)</div>
-                    <div class="flex items-center gap-4"><div class="dot risk-bad"></div> Alto (Rojo)</div>
-                    <div class="flex items-center gap-4"><div class="dot risk-unknown"></div> Sin Datos (Gris)</div>
+
+            <div class="bg-white rounded-2xl shadow p-6">
+                <h2 class="font-bold mb-3">Referencias</h2>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3"><div class="dot risk-ok"></div> <span class="text-xs font-bold">Compatible</span></div>
+                    <div class="flex items-center gap-3"><div class="dot risk-caution"></div> <span class="text-xs font-bold">Precaución</span></div>
+                    <div class="flex items-center gap-3"><div class="dot risk-bad"></div> <span class="text-xs font-bold">Incompatible</span></div>
+                    <p class="text-[10px] text-gray-400 mt-2">* Haz clic en los círculos de la tabla para evaluar rápido.</p>
                 </div>
             </div>
         </div>
 
-        <div class="bg-white rounded-3xl shadow-sm border overflow-hidden mb-12">
+        <div class="bg-white rounded-2xl shadow overflow-hidden">
             <div class="overflow-auto max-h-[500px]">
                 <table class="min-w-full text-xs">
                     <thead><tr id="headerRow"></tr></thead>
@@ -65,78 +72,80 @@
                 </table>
             </div>
         </div>
-
-        <section id="seccionCarga" class="bg-slate-900 rounded-[2.5rem] p-10 text-white shadow-2xl hidden">
-            <div class="flex justify-between items-center mb-8 text-left">
-                <div><h2 class="text-2xl font-bold">Añadir Nuevo Cruce</h2><p class="text-slate-400">Guardado directo en base de datos SQL.</p></div>
-                <button id="btnCerrarCarga" class="bg-slate-800 p-3 rounded-full">✕</button>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6 text-left">
-                <div><label class="text-[10px] font-bold text-slate-500 uppercase">Prod. A</label>
-                <input id="inA" class="w-full bg-slate-800 rounded-xl p-3 text-sm border-none outline-none focus:ring-2 focus:ring-blue-500"></div>
-                <div><label class="text-[10px] font-bold text-slate-500 uppercase">Prod. B</label>
-                <input id="inB" class="w-full bg-slate-800 rounded-xl p-3 text-sm border-none outline-none focus:ring-2 focus:ring-blue-500"></div>
-                <div><label class="text-[10px] font-bold text-slate-500 uppercase">Riesgo</label>
-                <select id="inR" class="w-full bg-slate-800 rounded-xl p-3 text-sm outline-none border-none"><option value="Bajo">Bajo</option><option value="Medio">Medio</option><option value="Alto">Alto</option></select></div>
-                <div><label class="text-[10px] font-bold text-slate-500 uppercase">Limp.</label>
-                <select id="inL" class="w-full bg-slate-800 rounded-xl p-3 text-sm outline-none border-none"><option value="1">1</option><option value="2">2</option><option value="5">5</option></select></div>
-                <div><label class="text-[10px] font-bold text-slate-500 uppercase">Notas</label>
-                <input id="inN" class="w-full bg-slate-800 rounded-xl p-3 text-sm border-none outline-none" placeholder="..."></div>
-            </div>
-            <button id="btnGuardarFila" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-4 rounded-2xl transition shadow-lg">Guardar en Base de Datos SQL</button>
-        </section>
     </div>
 
     <script>
         let DBs = {};
-        let catActual = "";
-        const API_URL = "http://localhost:5000/api"; // URL de tu backend
-        const PASS = "admin123";
+        let categoriaActual = "";
 
         const norm = s => (s || "").toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
         const pairKey = (a,b) => { const A = norm(a), B = norm(b); return A < B ? `${A}|${B}` : `${B}|${A}`; };
 
-        function getClase(info) {
-            if (!info) return 'risk-unknown';
-            const r = norm(info.riesgo), l = norm(info.limpieza);
-            if (r.includes('alt') || r.includes('incomp') || l === "5") return 'risk-bad';
-            if (r.includes('med') || r.includes('prec') || l === "2") return 'risk-caution';
-            if (r.includes('baj') || r.includes('comp') || l === "1") return 'risk-ok';
+        function getClase(txt) {
+            const t = norm(txt);
+            if (t.includes('alto') || t.includes('incompatible') || t.includes('no')) return 'risk-bad';
+            if (t.includes('medio') || t.includes('preca') || t.includes('alerta')) return 'risk-caution';
+            if (t.includes('bajo') || t.includes('compatible') || t === 'si') return 'risk-ok';
             return 'risk-unknown';
         }
 
-        async function cargarDatos() {
+        async function cargar() {
             try {
-                const r = await fetch(`${API_URL}/datos`);
+                const r = await fetch('data.json');
                 DBs = await r.json();
-                document.getElementById('status').textContent = "✅ SQL Conectado";
+                document.getElementById('status').textContent = "✅ Base de datos online";
                 const select = document.getElementById('categoria');
-                select.innerHTML = "";
                 Object.keys(DBs).forEach((cat, i) => {
-                    if(i === 0) catActual = cat;
-                    select.appendChild(new Option(cat, cat));
+                    if(i === 0) categoriaActual = cat;
+                    const opt = document.createElement('option');
+                    opt.value = cat; opt.textContent = cat;
+                    select.appendChild(opt);
                 });
-                render();
-            } catch (e) { document.getElementById('status').textContent = "⚠️ Error de conexión"; }
+                renderizar();
+            } catch (e) { document.getElementById('status').textContent = "❌ Error al cargar data.json"; }
         }
 
-        function render() {
-            const data = DBs[catActual]; if(!data) return;
-            const header = document.getElementById('headerRow'), body = document.getElementById('tableBody'), dl = document.getElementById('productos');
-            dl.innerHTML = ""; data.productos.forEach(p => dl.appendChild(new Option(p, p)));
-            header.innerHTML = '<th class="sticky-th px-6 py-4 bg-gray-50 text-left sticky-col border-b">Producto</th>';
-            data.productos.forEach(p => header.innerHTML += `<th class="sticky-th px-2 py-4 bg-gray-50 text-center border-x font-bold text-gray-500 border-b">${p}</th>`);
+        function evaluar(a, b) {
+            document.getElementById('prodA').value = a;
+            document.getElementById('prodB').value = b;
+            const info = DBs[categoriaActual].compat[pairKey(a, b)];
+            const resDiv = document.getElementById('resultado');
+            resDiv.classList.remove('hidden');
+            const riesgoTxt = info ? info.riesgo : "Sin datos";
+            const badge = document.getElementById('resRiesgo');
+            badge.textContent = riesgoTxt.toUpperCase();
+            badge.className = "badge " + getClase(riesgoTxt);
+            document.getElementById('resNotas').textContent = info ? (info.notas || "Sin notas.") : "No hay datos.";
+        }
+
+        function renderizar() {
+            const data = DBs[categoriaActual];
+            const datalist = document.getElementById('productos');
+            const header = document.getElementById('headerRow');
+            const body = document.getElementById('tableBody');
+
+            datalist.innerHTML = "";
+            data.productos.forEach(p => { const opt = new Option(p, p); datalist.appendChild(opt); });
+
+            header.innerHTML = '<th class="sticky-th px-4 py-3 bg-gray-100 text-left sticky-col">Producto</th>';
+            data.productos.forEach(p => { header.innerHTML += `<th class="sticky-th px-2 py-3 bg-gray-100 text-center border-x">${p}</th>`; });
+
             body.innerHTML = "";
             data.productos.forEach(rowP => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td class="font-bold px-6 py-3 border-b bg-white sticky-col shadow-sm">${rowP}</td>`;
+                tr.innerHTML = `<td class="font-bold px-4 py-2 border-b bg-white sticky-col">${rowP}</td>`;
                 data.productos.forEach(colP => {
-                    const td = document.createElement('td'); td.className = "px-2 py-3 text-center border-b border-r";
-                    if(rowP === colP) td.innerHTML = '<span class="text-gray-200">/</span>';
-                    else {
-                        const info = DBs[catActual].compat[pairKey(rowP, colP)];
-                        const dot = document.createElement('div'); dot.className = `dot ${getClase(info)}`;
-                        dot.onclick = () => evaluar(rowP, colP); td.appendChild(dot);
+                    const td = document.createElement('td');
+                    td.className = "px-2 py-2 text-center border-b border-r";
+                    if(rowP === colP) {
+                        td.innerHTML = '<span class="text-gray-300">-</span>';
+                    } else {
+                        const info = data.compat[pairKey(rowP, colP)];
+                        const riesgo = info ? info.riesgo : "Sin datos";
+                        const circulo = document.createElement('div');
+                        circulo.className = `dot ${getClase(riesgo)}`;
+                        circulo.onclick = () => evaluar(rowP, colP);
+                        td.appendChild(circulo);
                     }
                     tr.appendChild(td);
                 });
@@ -144,39 +153,10 @@
             });
         }
 
-        async function evaluar(a, b) {
-            document.getElementById('prodA').value = a; document.getElementById('prodB').value = b;
-            const info = DBs[catActual].compat[pairKey(a, b)];
-            const resDiv = document.getElementById('resultado'); resDiv.classList.remove('hidden');
-            const badge = document.getElementById('resRiesgo');
-            badge.textContent = info ? (info.riesgo || "Sin datos").toUpperCase() : "SIN DATOS";
-            badge.className = "badge " + getClase(info);
-            document.getElementById('resNotas').textContent = info ? (info.notas || "Sin notas.") : "Cruce no registrado.";
-        }
-
-        document.getElementById('btnAbrirCarga').onclick = () => {
-            if(prompt("Contraseña:") === PASS) { document.getElementById('seccionCarga').classList.remove('hidden'); }
-        };
-
-        document.getElementById('btnGuardarFila').onclick = async () => {
-            const payload = {
-                categoria: catActual,
-                producto_a: document.getElementById('inA').value.trim(),
-                producto_b: document.getElementById('inB').value.trim(),
-                riesgo: document.getElementById('inR').value,
-                limpieza: document.getElementById('inL').value,
-                notas: document.getElementById('inN').value.trim()
-            };
-            if(!payload.producto_a || !payload.producto_b) return alert("Faltan datos");
-            await fetch(`${API_URL}/guardar`, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)});
-            cargarDatos(); alert("✅ Guardado en SQL");
-        };
-
-        document.getElementById('categoria').onchange = (e) => { catActual = e.target.value; render(); };
+        document.getElementById('categoria').onchange = (e) => { categoriaActual = e.target.value; renderizar(); };
         document.getElementById('btnEvaluar').onclick = () => evaluar(document.getElementById('prodA').value, document.getElementById('prodB').value);
-        document.getElementById('btnCerrarCarga').onclick = () => document.getElementById('seccionCarga').classList.add('hidden');
 
-        cargarDatos();
+        cargar();
     </script>
 </body>
 </html>
